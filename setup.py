@@ -1,5 +1,6 @@
-from setuptools import setup, find_packages
-setup(name='dungeon_generator',
-      version='0.1',
-      packages = find_packages(),
-      )
+from setuptools import setup
+setup(
+    name='dungeon-generator',
+    version='0.1',
+    packages = ['dungeon_generator'],
+)
