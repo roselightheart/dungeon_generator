@@ -101,8 +101,8 @@ class Dungeon:
         'down': down_keyword
     }
     
-    player_exp_df_url = 'https://raw.githubusercontent.com/rexboyce/dungeon_generator/main/dnd_player_exp.csv'
-    monster_df_url = 'https://raw.githubusercontent.com/rexboyce/dungeon_generator/main/dnd_monsters.csv'
+    player_exp_df_url = 'https://raw.githubusercontent.com/rexboyce/dungeon_generator/main/dungeon_generator/dnd_player_exp.csv'
+    monster_df_url = 'https://raw.githubusercontent.com/rexboyce/dungeon_generator/main/dungeon_generator/dnd_monsters.csv'
     
     # alias the same variables
     trap_threshold_small = treasure_threshold_small
