@@ -1,5 +1,7 @@
 __init__.py
 setup.py
+dist/pydungeon-0.0.1-py3-none-any.whl
+dist/pydungeon-0.0.1.tar.gz
 dungeon_generator/__init__.py
 dungeon_generator/coin_scaling_justification.ipynb
 dungeon_generator/dnd_monsters.csv
