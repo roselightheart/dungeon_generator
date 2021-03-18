@@ -1092,7 +1092,7 @@ class Dungeon:
         )
     
     def prompt(self):
-        inp = input("Input your direction (wasd) or 'p' for pause: ")
+        inp = input("Input your direction (wasd) or 'p' for pause: \n")
             
         if inp in self.pause_inputs:
             self.pause = True
