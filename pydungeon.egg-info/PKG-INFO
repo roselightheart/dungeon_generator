@@ -1,0 +1,10 @@
+Metadata-Version: 1.0
+Name: pydungeon
+Version: 0.0.1
+Summary: D&D dungeon generator
+Home-page: UNKNOWN
+Author: Rex Boyce
+Author-email: rexboyce@gmail.com
+License: UNKNOWN
+Description: Package to generate Dungeons and populate them with monsters and traps
+Platform: UNKNOWN
