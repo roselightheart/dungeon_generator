@@ -176,8 +176,7 @@ class Dungeon:
         left_keyword: '<',
         right_keyword: '>'
     }
-    
-    
+
     def __init__(self, party, highest_passive_perception, m=10, n=10, p_wall=0.3, include_doors=True, doors_open=False, plot_size=10, visible_traps=False):
         self.party = party
         self.avg_party_level = self._avg_party_level(party)
@@ -205,7 +204,6 @@ class Dungeon:
         self.monster_df['cr'] = self.monster_df.apply(self._extract_cr, axis=1)
         
         self.generate_all_encounters()
-
 
     # methods
     def check_for_encounter(self):
@@ -532,8 +530,6 @@ class Dungeon:
                 raise ValueError(f"Invalid difficulty: {difficulty}")
     
     def generate_trap(self):
-        cr = self.avg_party_level
-
         severity_roll = self._roll(1, dx=6)
         if severity_roll in {1, 2}:
             severity = self.severity_setback_keyword
@@ -1144,27 +1140,27 @@ class Dungeon:
 
         if cr <= self.trap_threshold_small:
             trap_damage_dict = {
-                self.severity_setback_keyword: _roll(1, dx=10 - self.trap_threshold_small + cr),
-                self.severity_dangerous_keyword: _roll(2, dx=10 - self.trap_threshold_small + cr),
-                self.severity_deadly_keyword: _roll(4, dx=10 - self.trap_threshold_small + cr)
+                self.severity_setback_keyword: self._roll(1, dx=10 - self.trap_threshold_small + cr),
+                self.severity_dangerous_keyword: self._roll(2, dx=10 - self.trap_threshold_small + cr),
+                self.severity_deadly_keyword: self._roll(4, dx=10 - self.trap_threshold_small + cr)
             }
         elif cr <= self.trap_threshold_medium:
             trap_damage_dict = {
-                self.severity_setback_keyword: _roll(2, dx=10 - self.trap_threshold_medium + cr),
-                self.severity_dangerous_keyword: _roll(4, dx=10 - self.trap_threshold_medium + cr),
-                self.severity_deadly_keyword: _roll(10, dx=10 - self.trap_threshold_medium + cr)
+                self.severity_setback_keyword: self._roll(2, dx=10 - self.trap_threshold_medium + cr),
+                self.severity_dangerous_keyword: self._roll(4, dx=10 - self.trap_threshold_medium + cr),
+                self.severity_deadly_keyword: self._roll(10, dx=10 - self.trap_threshold_medium + cr)
             }
         elif cr <= self.trap_threshold_large:
             trap_damage_dict = {
-                self.severity_setback_keyword: _roll(4, dx=10 - self.trap_threshold_large + cr),
-                self.severity_dangerous_keyword: _roll(10, dx=10 - self.trap_threshold_large + cr),
-                self.severity_deadly_keyword: _roll(18, dx=10 - self.trap_threshold_large + cr)
+                self.severity_setback_keyword: self._roll(4, dx=10 - self.trap_threshold_large + cr),
+                self.severity_dangerous_keyword: self._roll(10, dx=10 - self.trap_threshold_large + cr),
+                self.severity_deadly_keyword: self._roll(18, dx=10 - self.trap_threshold_large + cr)
             }
         else:
             trap_damage_dict = {
-                self.severity_setback_keyword: _roll(10, dx=10),
-                self.severity_dangerous_keyword: _roll(18, dx=10),
-                self.severity_deadly_keyword: _roll(24, dx=10)
+                self.severity_setback_keyword: self._roll(10, dx=10),
+                self.severity_dangerous_keyword: self._roll(18, dx=10),
+                self.severity_deadly_keyword: self._roll(24, dx=10)
             }
 
         print(f"Trap trigger: {trigger}")
@@ -1297,7 +1293,6 @@ class Dungeon:
             if trap_visible is None:
                 raise ValueError('Trap should be visible or invisible, not None')
             self.run_trap(self.trap_locs[(i, j)], visible=trap_visible)
-
 
     # helper functions  
     def _adjacency(self, A, B):
@@ -1567,10 +1562,10 @@ class Dungeon:
         
     def _open_door(self, keyword, position):
         inp = input("Would you like to open the door? (y/n)")
-        while inp not in ('y', 'n'):
+        while inp not in ('y', 'n', self.latest_direction):
             inp = input("Would you like to open the door? (y/n)")
         
-        if inp == 'y':
+        if inp in ('y', self.latest_direction):
             i, j = position
             if keyword == self.vertical_keyword:
                 self.A[i, j] = self.open_door_value
