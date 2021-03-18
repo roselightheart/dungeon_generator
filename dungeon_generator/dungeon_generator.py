@@ -1092,7 +1092,7 @@ class Dungeon:
         )
     
     def prompt(self):
-        inp = input("Input your direction (wasd) or 'p' for pause \n")
+        inp = input("Input your direction (wasd) or 'p' for pause: \n")
             
         if inp in self.pause_inputs:
             self.pause = True
@@ -1108,9 +1108,9 @@ class Dungeon:
         print(closest_encounter, ":")
         print(self.encounters[closest_encounter])
 
-        inp = input("Did you win? (y/n)")
+        inp = input("Did you win? (y/n) \n")
         while inp not in {'y', 'n'}:
-            inp = input("Did you win? (y/n)")
+            inp = input("Did you win? (y/n) \n")
         if inp == 'y':
             encounter_loc = self.encounter_locs[closest_encounter]
 
@@ -1168,9 +1168,9 @@ class Dungeon:
         if visible or allow_disarm:
             print(f"Trap disarm DC: {self.trap_dc_dict[severity]}")
 
-            inp = input('Did you disarm the trap? (y/n)')
+            inp = input('Did you disarm the trap? (y/n) \n')
             while inp not in {'y', 'n'}:
-                inp = input('Did you disarm the trap? (y/n)')
+                inp = input('Did you disarm the trap? (y/n) \n')
 
             if inp == 'y':
                 print("\nSuccessfully disarmed trap :)")
@@ -1183,9 +1183,9 @@ class Dungeon:
         print(f"Trap save DC: {self.trap_dc_dict[severity]}")
         print(f"Trap attack bonus: {self.trap_attack_bonus_dict[severity]}")
 
-        inp = input('Did you take damage? (y/n)')
+        inp = input('Did you take damage? (y/n) \n')
         while inp not in {'y', 'n'}:
-            inp = input('Did you take damage? (y/n)')
+            inp = input('Did you take damage? (y/n) \n')
 
         if inp == 'n':
             print("\nYou successfully avoided the trap.")
@@ -1561,9 +1561,9 @@ class Dungeon:
         self.ax.add_patch(rect)
         
     def _open_door(self, keyword, position):
-        inp = input("Would you like to open the door? (y/n)")
+        inp = input("Would you like to open the door? (y/n) \n")
         while inp not in ('y', 'n', self.latest_direction):
-            inp = input("Would you like to open the door? (y/n)")
+            inp = input("Would you like to open the door? (y/n) \n")
         
         if inp in ('y', self.latest_direction):
             i, j = position
